@@ -8,16 +8,16 @@
  * @summary This program is parent class for subclass such as Triangle, Circle, Square, Rectangle, Cube
  */
 
-public class TwoDimensionalShape extends Shape {
+public class ThreeDimensionalShape extends Shape {
 	
-	private double area;
+	public double volume;
 	
-	public TwoDimensionalShape(int numberOfSides, double area) {
+	public ThreeDimensionalShape(int numberOfSides, double volume) {
 		super(numberOfSides);
-		this.area = area;
+		this.volume = volume;
 	}
-	
-	public double getArea() {
-		return area;
+
+	public double getVolume() {
+		return volume;
 	}
 }
