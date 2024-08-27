@@ -20,5 +20,12 @@ public class Circle extends TwoDimensionalShape {
 	public double getRadius() {
 		return Math.PI * Math.pow(radius, 2);
 	}
+
+	@Override
+	public double getArea() {
+		// TODO Auto-generated method stub
+		 int area = (int) (Math.PI * Math.pow(radius, 2));
+		return area;
+	}
 	
 }
