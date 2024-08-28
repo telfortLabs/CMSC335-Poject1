@@ -5,19 +5,12 @@
  * 
  * @created 25 Aug 2024
  * 
- * @summary This program is parent class for subclass such as Triangle, Circle, Square, Rectangle, Cube
+ * @summary The interface below extends Shape, and provide the 
+ * necessary method for 2 dimensional shapes.
  */
 
-public class TwoDimensionalShape extends Shape {
+public interface TwoDimensionalShape extends Shape {
 	
-	private double area;
-	
-	public TwoDimensionalShape(int numberOfSides, double area) {
-		super(numberOfSides);
-		this.area = area;
-	}
-	
-	public double getArea() {
-		return area;
-	}
+	// Method to calculate the area of a shape.
+	public double getArea();
 }
