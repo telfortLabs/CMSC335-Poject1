@@ -5,19 +5,12 @@
  * 
  * @created 25 Aug 2024
  * 
- * @summary This program is parent class for subclass such as Triangle, Circle, Square, Rectangle, Cube
+ * @summary The interface below extends Shape, and provide the 
+ * necessary method for 3 dimensional shapes.
  */
 
-public class ThreeDimensionalShape extends Shape {
+public interface ThreeDimensionalShape extends Shape {
 	
-	public double volume;
-	
-	public ThreeDimensionalShape(int numberOfSides, double volume) {
-		super(numberOfSides);
-		this.volume = volume;
-	}
-
-	public double getVolume() {
-		return volume;
-	}
+	// Method to calculate the volume of a shape.
+	public double getVolume();	
 }
