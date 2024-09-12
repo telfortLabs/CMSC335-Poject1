@@ -19,17 +19,17 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-public class ShapeDrawer extends JPanel implements ActionListener {
+public class Main_Menu extends JPanel implements ActionListener {
 	
 	
 	/*
 	 * The method below creates a GUI to present to the user.
 	 */
 	
-	public static void GUI() {
+	public static void GUI() {   
 		
 		/*
-		 * From line 33-40, a frame is created and labeled it "Shape App",
+		 * From line 38-48, a frame is created and labeled it "Shape App",
 		 * then the size and location to appear is set, and finally set the frame
 		 * to close when the "x" button is clicked. Furthermore,  a panel is created,
 		 * then set the panel to use Border Layout and added it to the frame.
@@ -50,9 +50,16 @@ public class ShapeDrawer extends JPanel implements ActionListener {
 		
 		
 		JButton shape2D = new JButton("2 Dimensional shape");								/* Created button and labeled it shape2D. */
-		shape2D.addActionListener(new ActionListener() {									/* Added an Action Listener to button. */
+		
+		/*
+		 * Once the user clicks on the button
+		 * it will load the menu for creating 
+		 * 2D shapes. 
+		 */
+		
+		shape2D.addActionListener(new ActionListener() {
 			
-			public void actionPerformed(ActionEvent e) {									/* Action that the button will perform. */
+			public void actionPerformed(ActionEvent e) {									
 				
 				frame.dispose();
 				if(e.getSource() == shape2D) {
@@ -61,10 +68,19 @@ public class ShapeDrawer extends JPanel implements ActionListener {
 			}
 		});
 		
+		
+		
 		JButton shape3D = new JButton("3 Dimensional shape");								/* Created button and labeled it shape3D. */
-		shape3D.addActionListener(new ActionListener() {									/* Added an Action Listener to button. */
+		
+		/*
+		 * Once the user clicks on the button
+		 * it will load the menu for creating 
+		 * 3D shapes. 
+		 */
+		
+		shape3D.addActionListener(new ActionListener() {
 			
-			public void actionPerformed(ActionEvent e) {									/* Action that the button will perform. */
+			public void actionPerformed(ActionEvent e) {
 				
 				frame.dispose();
 				if(e.getSource() == shape3D) {
@@ -76,7 +92,7 @@ public class ShapeDrawer extends JPanel implements ActionListener {
 		
 		
 		JButton exit = new JButton("Exit");													/* Created button and labeled it exit. */
-		exit.addActionListener(new ShapeDrawer());											/* Added an Action Listener to button. */
+		exit.addActionListener(new Main_Menu());											/* Added an Action Listener to button. */
 		
 		/*
 		 * Added the buttons
@@ -89,6 +105,11 @@ public class ShapeDrawer extends JPanel implements ActionListener {
 		panel.add(exit);																	
 		
 		frame.setVisible(true);																/* Making the frame visible. */
+		
+		/*
+		 * Added Metal look and Feel
+		 * appearance to the app.
+		 */
 		
 		try {
 			UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
@@ -106,6 +127,7 @@ public class ShapeDrawer extends JPanel implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		System.out.println("Exited the App");
 		System.exit(0);																		/* System will terminate when the button exit is clicked. */	
 	}
 

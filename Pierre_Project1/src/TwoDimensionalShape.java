@@ -11,6 +11,6 @@
 
 public interface TwoDimensionalShape extends Shape {
 	
-	// Method to calculate the area of a shape.
+	/* Method to calculate the area of a shape. */
 	public double getArea();
 }

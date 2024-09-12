@@ -9,8 +9,8 @@
  */
 
 public class Sphere implements ThreeDimensionalShape {
-	private double radius;									// Variable for the radius of a sphere.
-	private double volume;									// Variable for the volume of a sphere.
+	private double radius;												/* Variable for the radius of a sphere. */
+	private double volume;												/* Variable for the volume of a sphere. */
 	
 	/**
 	 * The constructor below takes one parameter

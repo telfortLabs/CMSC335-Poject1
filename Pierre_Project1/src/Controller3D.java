@@ -25,15 +25,21 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 public class Controller3D extends JFrame implements ActionListener {
 	
-	JFrame frame = new JFrame();
-	JButton response = new JButton("Done");
-	String[] threeDimensional = {"","Cone","Cube","Cylinder","Sphere","Torus"};
-	JLabel message = new JLabel();
-	JLabel selected = new JLabel();
-	JPanel panel = new JPanel();
-	TextField userInput = new TextField();
-	JLabel volume = new JLabel();
-	JLabel loadImage = new JLabel();
+	/*
+	 * Created a frame, a panel and 
+	 * other necessary variables to 
+	 * load and display the app to the user.
+	 */
+	
+	private JFrame frame = new JFrame();
+	private JButton response = new JButton("Done");
+	private String[] threeDimensional = {"","Cone","Cube","Cylinder","Sphere","Torus"};
+	private JLabel message = new JLabel();
+	private JLabel selected = new JLabel();
+	private JPanel panel = new JPanel();
+	private TextField shapeVolume = new TextField();
+	private JLabel volume = new JLabel();
+	private JLabel loadImage = new JLabel();
 	
 	String selectedShape, getRadius, getRadius2, getHeight, getSide;
 	
@@ -41,45 +47,60 @@ public class Controller3D extends JFrame implements ActionListener {
 
 	JComboBox<String> comboBox3D;
 	
+	ImageIcon cubeImage, coneImage, cylinderImage, phereImage, torusImage, sphereImage, blankImage;
+	
 	Controller3D() {
 		
+		/*
+		 * Line 59 - 64 will load
+		 * necessary images for the app.
+		 */
 		
-		ImageIcon cubeImage = new ImageIcon(getClass().getResource("cube.jpg"));
-		ImageIcon coneImage = new ImageIcon(getClass().getResource("cone.jpg"));
-		ImageIcon cylinderImage = new ImageIcon(getClass().getResource("cylinder.jpg"));
-		ImageIcon sphereImage = new ImageIcon(getClass().getResource("sphere.jpg"));
-		ImageIcon torusImage = new ImageIcon(getClass().getResource("torus.jpg"));
-		ImageIcon blankImage = new ImageIcon(getClass().getResource("blank.jpg"));
+		cubeImage = new ImageIcon(getClass().getResource("cube.jpg"));
+		coneImage = new ImageIcon(getClass().getResource("cone.jpg"));
+		cylinderImage = new ImageIcon(getClass().getResource("cylinder.jpg"));
+		sphereImage = new ImageIcon(getClass().getResource("sphere.jpg"));
+		torusImage = new ImageIcon(getClass().getResource("torus.jpg"));
+		blankImage = new ImageIcon(getClass().getResource("blank.jpg"));
 		
-		// creating second frame
-		frame = new JFrame("3D Drawings");
-		frame.add(panel);
+		frame = new JFrame("3D Drawings");																									/* Created a frame. */
+		frame.add(panel);																													/* Added panel to the frame. */
 		
+		shapeVolume.setEditable(false);																										/* Disable edit function of text Field. */
+		shapeVolume.setBounds(450, 35, 80, 20);																								/* Set frame location for text field. */
+		volume.setBounds(250, 35, 140, 20);																									/* Set frame location for label. */
+		loadImage.setBounds(300, 120, 250, 250);																							/* Set frame location for image icon. */
 		
-		userInput.setBounds(450, 35, 80, 20);
-		volume.setBounds(250, 35, 140, 20);
+		comboBox3D = new JComboBox<>(threeDimensional);																						/* Added list of shapes to combo box. */
+		comboBox3D.setBounds(25, 35, 140, 20);																								/* Set frame location for combo box. */
 		
-		loadImage.setBounds(300, 120, 250, 250);
+		response.setBounds(25, 180, 80, 20);																								/* Set frame location for button. */
+		selected.setBounds(400, 15, 160, 20);																								/* Set frame location for label. */
 		
-				
-		// creating combo list
-		comboBox3D = new JComboBox<>(threeDimensional);
-		comboBox3D.setBounds(25, 35, 140, 20);
+		message.setText("Select shape from list below then click done");																	/* Message to display to user. */
+		message.setBounds(25, 15, 290, 20);																									/* Set frame location for label. */
 		
-		
-		response.setBounds(25, 180, 80, 20);
-		selected.setBounds(400, 15, 160, 20);
-		
-		message.setText("Select shape from list below");
-		message.setBounds(25, 15, 180, 20);
+		/*
+		 * Added the buttons
+		 * and label, and other 
+		 * necessary components to the panel.
+		 */
 		
 		panel.add(message);
 		panel.add(comboBox3D);
 		panel.add(response);
-		panel.add(userInput);
+		panel.add(shapeVolume);
 		panel.add(volume);
 		panel.add(loadImage);
 		panel.add(selected);
+		
+		/*
+		 * The Action listener below will
+		 * check user's choice then collect necessary
+		 * inputs from the user to calculate the volume
+		 * of a shape then display and image of 
+		 * the shape.
+		 */
 		
 		response.addActionListener(new ActionListener() {
 
@@ -88,14 +109,14 @@ public class Controller3D extends JFrame implements ActionListener {
 				
 				try {
 					if(comboBox3D.getSelectedItem().equals("Cone")) {
-						
-						userInput.setText("");
+						loadImage.setIcon(blankImage);
+						shapeVolume.setText("");
 						
 						selectedShape = "You selected " + comboBox3D.getItemAt(comboBox3D.getSelectedIndex());
 						selected.setText(selectedShape);
 						
-						getRadius = JOptionPane.showInputDialog(panel, "Enter cone radius");
-						getHeight = JOptionPane.showInputDialog(panel, "Enter cone height");
+						getRadius = JOptionPane.showInputDialog(panel, "Enter Cone radius");		
+						getHeight = JOptionPane.showInputDialog(panel, "Enter Cone height");
 						
 						convertedRadius = Double.parseDouble(getRadius);
 						convertedHeight = Double.parseDouble(getHeight);
@@ -104,7 +125,7 @@ public class Controller3D extends JFrame implements ActionListener {
 						
 						volume.setText("Volume of Cone is");
 						
-						userInput.setText(String.valueOf(cone.getVolume()));
+						shapeVolume.setText(String.valueOf(cone.getVolume()));
 						
 						loadImage.setIcon(coneImage);
 						System.out.println("Tasked completed successfully");
@@ -113,12 +134,12 @@ public class Controller3D extends JFrame implements ActionListener {
 						
 						loadImage.setIcon(blankImage);
 						volume.setText("Volume of Cube is");
-						userInput.setText("");
+						shapeVolume.setText("");
 						
 						selectedShape = "You selected " + comboBox3D.getItemAt(comboBox3D.getSelectedIndex());
 						selected.setText(selectedShape);
 						
-						getSide = JOptionPane.showInputDialog(panel, "Enter cube side's length");
+						getSide = JOptionPane.showInputDialog(panel, "Enter Cube side's length");
 						
 						
 						convertedSide = Double.parseDouble(getSide);
@@ -126,30 +147,30 @@ public class Controller3D extends JFrame implements ActionListener {
 						
 						Cube cube = new Cube(convertedSide);
 						
-						userInput.setText(String.valueOf(cube.getVolume()));
+						shapeVolume.setText(String.valueOf(cube.getVolume()));
 						
 						loadImage.setIcon(cubeImage);
 						System.out.println("Tasked completed successfully");
 					}
-					else if(comboBox3D.getSelectedItem().equals("Cylinder")) {
+					else if(comboBox3D.getSelectedItem().equals("Cylinder")) {						
 						
 						loadImage.setIcon(blankImage);
 						volume.setText("Volume of Cylinder is");
-						userInput.setText("");
+						shapeVolume.setText("");
 						
 						selectedShape = "You selected " + comboBox3D.getItemAt(comboBox3D.getSelectedIndex());
 						selected.setText(selectedShape);
 						
-						getRadius = JOptionPane.showInputDialog(panel, "Enter cylinder radius");
+						getRadius = JOptionPane.showInputDialog(panel, "Enter Cylinder radius");
 						
-						getHeight = JOptionPane.showInputDialog(panel, "Enter cylinder height");
+						getHeight = JOptionPane.showInputDialog(panel, "Enter Cylinder height");
 						
 						convertedRadius = Double.parseDouble(getRadius);
 						convertedHeight = Double.parseDouble(getHeight);
 						
 						Cylinder cylinder = new Cylinder(convertedRadius, convertedHeight);
 						
-						userInput.setText(String.valueOf(cylinder.getVolume()));
+						shapeVolume.setText(String.valueOf(cylinder.getVolume()));
 						
 						loadImage.setIcon(cylinderImage);
 						System.out.println("Tasked completed successfully");
@@ -159,18 +180,18 @@ public class Controller3D extends JFrame implements ActionListener {
 						
 						loadImage.setIcon(blankImage);
 						volume.setText("Volume of Sphere is");
-						userInput.setText("");
+						shapeVolume.setText("");
 						
-						selectedShape = "You selected " + comboBox3D.getItemAt(comboBox3D.getSelectedIndex());
+						selectedShape = "You selected " + comboBox3D.getItemAt(comboBox3D.getSelectedIndex());						
 						selected.setText(selectedShape);
 						
-						getRadius = JOptionPane.showInputDialog(panel, "Enter sphere radius");
+						getRadius = JOptionPane.showInputDialog(panel, "Enter Sphere radius");
 						
 						convertedRadius = Double.parseDouble(getRadius);
 						
 						Sphere sphere = new Sphere(convertedRadius);
 						
-						userInput.setText(String.valueOf(sphere.getVolume()));
+						shapeVolume.setText(String.valueOf(sphere.getVolume()));
 						
 						loadImage.setIcon(sphereImage);
 						System.out.println("Tasked completed successfully");
@@ -179,20 +200,20 @@ public class Controller3D extends JFrame implements ActionListener {
 						
 						loadImage.setIcon(blankImage);
 						volume.setText("Volume of Torus is");
-						userInput.setText("");
+						shapeVolume.setText("");
 						
 						selectedShape = "You selected " + comboBox3D.getItemAt(comboBox3D.getSelectedIndex());
 						selected.setText(selectedShape);
 						
-						getRadius = JOptionPane.showInputDialog(panel, "Enter torus outer radius");
-						getRadius2 = JOptionPane.showInputDialog(panel, "Enter torus inner radius");
+						getRadius = JOptionPane.showInputDialog(panel, "Enter Torus outer radius");
+						getRadius2 = JOptionPane.showInputDialog(panel, "Enter Torus inner radius");
 						
 						convertedRadius = Double.parseDouble(getRadius);
 						convertedRadius2 = Double.parseDouble(getRadius2);
 						
 						Torus torus = new Torus(convertedRadius, convertedRadius2);
 						
-						userInput.setText(String.valueOf(torus.getVolume()));
+						shapeVolume.setText(String.valueOf(torus.getVolume()));
 						
 						loadImage.setIcon(torusImage);
 						System.out.println("Tasked completed successfully");
@@ -200,12 +221,12 @@ public class Controller3D extends JFrame implements ActionListener {
 					else {
 						loadImage.setIcon(blankImage);
 						volume.setText("");
-						userInput.setText("");
+						shapeVolume.setText("");
 						
-						selectedShape = "Sorry wrong answer " + comboBox3D.getItemAt(comboBox3D.getSelectedIndex());
+						selectedShape = "Sorry wrong answer " + comboBox3D.getItemAt(comboBox3D.getSelectedIndex());			
 						selected.setText(selectedShape);
 						
-						System.out.println("Sorry an error has occured");
+						System.err.println("Sorry an error has occured");
 					}
 					
 				} catch (Exception ex) {
@@ -218,10 +239,15 @@ public class Controller3D extends JFrame implements ActionListener {
 		});
 		
 		
-		panel.setLayout(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(600, 600);
-		frame.setVisible(true);																/* Making the frame visible. */
+		panel.setLayout(null);																												/* Setting layout for frame. */
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);																				/* Set frame to close when the user click "x". */
+		frame.setSize(600, 600);																											/* Set size for frame. */
+		frame.setVisible(true);																												/* Making the frame visible. */
+		
+		/*
+		 * Added Metal look and Feel
+		 * appearance to the app.
+		 */
 		
 		try {
 			UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
@@ -234,7 +260,8 @@ public class Controller3D extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.exit(0);
+		System.out.println("Exited the App");
+		System.exit(0);																														/* System will terminate when the button exit is clicked. */
 		
 	}
 

@@ -10,9 +10,9 @@
 
 public class Torus implements ThreeDimensionalShape {
 	
-	private double majorRadius;									// Variable for the major radius of a torus.
-	private double minorRadius;									// Variable for the minor radius of a torus.
-	private double volume;										// Variable for the volume of a torus.
+	private double majorRadius;									/* Variable for the major radius of a torus. */
+	private double minorRadius;									/* Variable for the minor radius of a torus. */
+	private double volume;										/* Variable for the volume of a torus. */
 	
 	/**
 	 * The constructor below takes 2 parameters

@@ -9,8 +9,8 @@
  */
 
 public class Cube implements ThreeDimensionalShape {
-	private double sidelength;							// Variable for the side's length of a cube.
-	private double volume;								// Variable for the volume of a cube.
+	private double sidelength;							/* Variable for the side's length of a cube. */
+	private double volume;								/* Variable for the volume of a cube. */
 	
 	/**
 	 * The constructor below takes one parameter

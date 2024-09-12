@@ -11,6 +11,6 @@
 
 public interface ThreeDimensionalShape extends Shape {
 	
-	// Method to calculate the volume of a shape.
+	/* Method to calculate the volume of a shape. */
 	public double getVolume();	
 }

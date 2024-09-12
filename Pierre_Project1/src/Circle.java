@@ -10,8 +10,8 @@
 
 public class Circle implements TwoDimensionalShape {
 	
-	private double radius;							// Variable for the radius of a circle.
-	private double area;							// Variable for the area of a circle.
+	private double radius;							/* Variable for the radius of a circle. */
+	private double area;							/* Variable for the area of a circle. */
 	
 	/**
 	 * The constructor below takes one parameter
