@@ -9,8 +9,8 @@
  */
 
 public class Square implements TwoDimensionalShape {
-	private double sideLength;							// Variable for the length of the side of a square.
-	private double area;								// Variable for the area of a square.
+	private double sideLength;							  			/* Variable for the length of the side of a square. */
+	private double area;										 	/* Variable for the area of a square. */
 	
 	/**
 	 * The constructor below takes one parameter

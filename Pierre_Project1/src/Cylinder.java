@@ -9,9 +9,9 @@
  */
 
 public class Cylinder implements ThreeDimensionalShape {
-	private double radius;									// Variable for the radius of a cylinder.
-	private double height;									// Variable for the height of a cylinder.
-	private double volume;									// Variable for the volume of a cylinder.
+	private double radius;									/* Variable for the radius of a cylinder. */
+	private double height;									/* Variable for the height of a cylinder. */
+	private double volume;									/* Variable for the volume of a cylinder. */
 	
 	/**
 	 * The constructor below takes 2 parameters

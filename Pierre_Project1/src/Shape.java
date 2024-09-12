@@ -11,6 +11,6 @@
 
 public interface Shape {
 	
-	// Method to calculate the number of sides in a shape.
+	/* Method to calculate the number of sides in a shape. */
 	public void getDimension();
 }

@@ -9,9 +9,9 @@
  */
 
 public class Rectangle implements TwoDimensionalShape {
-	private double length;								// Variable for the length of a rectangle.
-	private double width;								// Variable for the width of a rectangle.
-	private double area;								// Variable for the area of a rectangle.
+	private double length;								/* Variable for the length of a rectangle. */
+	private double width;								/* Variable for the width of a rectangle. */
+	private double area;							 	/* VVariable for the area of a rectangle. */
 	
 	/**
 	 * The constructor below takes 2 parameters

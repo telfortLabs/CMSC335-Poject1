@@ -9,9 +9,9 @@
  */
 
 public class Triangle implements TwoDimensionalShape {
-	private double base;								// Variable for the base of a triangle
-	private double height;								// Variable for the height of a triangle.
-	private double area;								// Variable for the area of a triangle.
+	private double base;								/* Variable for the base of a triangle. */
+	private double height;								/* Variable for the height of a triangle. */ 
+	private double area;								/* Variable for the area of a triangle. */
 	
 	/**
 	 * The constructor below takes 2 parameters

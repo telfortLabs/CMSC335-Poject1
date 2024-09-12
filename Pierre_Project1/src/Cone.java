@@ -9,9 +9,9 @@
  */
 
 public class Cone implements ThreeDimensionalShape {
-	private double radius;									// Variable for the radius of a cone.
-	private double height;									// Variable for the height of a cone.
-	private double volume;									// Variable for the volume of a cone.
+	private double radius;									/* Variable for the radius of a cone. */
+	private double height;									/* Variable for the height of a cone. */
+	private double volume;									/* Variable for the volume of a cone. */
 	
 	/**
 	 * The constructor below takes 2 parameters

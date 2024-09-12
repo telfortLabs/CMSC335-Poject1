@@ -24,61 +24,81 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 public class Controller2D extends JFrame implements ActionListener {
 	
-	JFrame frame = new JFrame();
-	JButton response = new JButton("Done");
-	String[] twoDimensional = {"","Circle","Rectangle","Square","Triangle"};
-	JComboBox<String> comboBox2D;
-	JLabel message = new JLabel();
-	JLabel selected = new JLabel();
-	JPanel panel = new JPanel();
-	TextField userInput = new TextField();
-	JLabel area = new JLabel();
-	JLabel loadImage = new JLabel();
+	/*
+	 * Created a frame, a panel and 
+	 * other necessary variables to 
+	 * load and display the app to the user.
+	 */
 	
-	String length, width, getRadius, base, height, sideLength, selectedShape;
+	private JFrame frame = new JFrame();
+	private JButton response = new JButton("Done");
+	private String[] twoDimensional = {"","Circle","Rectangle","Square","Triangle"};
+	private JComboBox<String> comboBox2D;
+	private JLabel message = new JLabel();
+	private JLabel selected = new JLabel();
+	private JPanel panel = new JPanel();
+	private TextField shapeArea = new TextField();
+	private JLabel area = new JLabel();
+	private JLabel loadImage = new JLabel();
 	
+	private String length, width, getRadius, base, height, sideLength, selectedShape;
 	
-	Double convertedRadius, convertedLength, convertedWidth, convertedBase, 
+	private Double convertedRadius, convertedLength, convertedWidth, convertedBase, 
 	convertedHeight, convertedSide;
 	
+	private ImageIcon circleImage, squareImage, triangleImage, rectangleImage, blankImage;
 	
 	Controller2D () {
 		
-		ImageIcon circleImage = new ImageIcon(getClass().getResource("circle.png"));
-		ImageIcon squareImage = new ImageIcon(getClass().getResource("square.jpg"));
-		ImageIcon triangleImage = new ImageIcon(getClass().getResource("triangle.jpg"));
-		ImageIcon rectangleImage = new ImageIcon(getClass().getResource("rectangle.jpg"));
-		ImageIcon blankImage = new ImageIcon(getClass().getResource("blank.jpg"));
+		/*
+		 * Line 58 - 62 will load
+		 * necessary images for the app.
+		 */
 		
-		// creating second frame
-		frame.setTitle("2D Drawings");
-		frame.add(panel);
+		circleImage = new ImageIcon(getClass().getResource("circle.png"));
+		squareImage = new ImageIcon(getClass().getResource("square.jpg"));
+		triangleImage = new ImageIcon(getClass().getResource("triangle.jpg"));
+		rectangleImage = new ImageIcon(getClass().getResource("rectangle.jpg"));
+		blankImage = new ImageIcon(getClass().getResource("blank.jpg"));
 		
-		userInput.setBounds(450, 35, 80, 20);
-		area.setBounds(250, 35, 140, 20);
+		frame.setTitle("2D Drawings");																				/* Created a frame. */
+		frame.add(panel);																							/* Added panel to the frame. */
 		
-		loadImage.setBounds(300, 120, 250, 250);
+		shapeArea.setEditable(false);																				/* Disable edit function of text Field. */
+		shapeArea.setBounds(450, 35, 80, 20);																		/* Set frame location for text field. */
+		area.setBounds(250, 35, 140, 20);																			/* Set frame location for label. */
+		loadImage.setBounds(300, 120, 250, 250);																	/* Set frame location for image icon. */
 		
-		// creating combo list
-		comboBox2D = new JComboBox<>(twoDimensional);
-		comboBox2D.setBounds(25, 35, 140, 20);
+		comboBox2D = new JComboBox<>(twoDimensional);																/* Added list of shapes to combo box. */
+		comboBox2D.setBounds(25, 35, 140, 20);																		/* Set frame location for combo box. */
 		
-		response.setBounds(25, 160, 80, 20);
+		response.setBounds(25, 160, 80, 20);																		/* Set frame location for button. */
+		selected.setBounds(400, 15, 160, 20);																		/* Set frame location for label. */
 		
-		selected.setBounds(400, 15, 160, 20);
+		message.setText("Select shape from list below then click done");											/* Message to display to user. */
+		message.setBounds(25, 15, 290, 20);																			/* Set frame location for label. */
 		
-		message.setText("Select shape from list below");
-		message.setBounds(25, 15, 180, 20);
+		/*
+		 * Added the buttons
+		 * and label, and other 
+		 * necessary components to the panel.
+		 */
 		
 		panel.add(message);
 		panel.add(comboBox2D);
 		panel.add(selected);
 		panel.add(response);
-		panel.add(userInput);
+		panel.add(shapeArea);
 		panel.add(area);
 		panel.add(loadImage);
 		
-		
+		/*
+		 * The Action listener below will
+		 * check user's choice then collect necessary
+		 * inputs from the user to calculate the area
+		 * of a shape then display and image of 
+		 * the shape.
+		 */
 		
 		response.addActionListener(new ActionListener() {
 
@@ -88,12 +108,13 @@ public class Controller2D extends JFrame implements ActionListener {
 				try {
 					if(comboBox2D.getSelectedItem().equals("Circle")) {
 						
-						userInput.setText("");
+						loadImage.setIcon(blankImage);
+						shapeArea.setText("");
 						
 						selectedShape = "You selected " + comboBox2D.getItemAt(comboBox2D.getSelectedIndex());
 						selected.setText(selectedShape);
 						
-						getRadius = JOptionPane.showInputDialog(panel, "Enter Circle radius");
+						getRadius = JOptionPane.showInputDialog(panel, "Enter Circle radius");						
 						
 						convertedRadius = Double.parseDouble(getRadius);
 						
@@ -101,7 +122,7 @@ public class Controller2D extends JFrame implements ActionListener {
 						
 						area.setText("Area of Circle is");
 						
-						userInput.setText(String.valueOf(circle.getArea()));
+						shapeArea.setText(String.valueOf(circle.getArea()));
 						
 						loadImage.setIcon(circleImage);
 						System.out.println("Tasked completed successfully");
@@ -110,12 +131,12 @@ public class Controller2D extends JFrame implements ActionListener {
 						
 						loadImage.setIcon(blankImage);
 						area.setText("Area of Rectangle is");
-						userInput.setText("");
+						shapeArea.setText("");
 						
 						selectedShape = "You selected " + comboBox2D.getItemAt(comboBox2D.getSelectedIndex());
 						selected.setText(selectedShape);
 						
-						length = JOptionPane.showInputDialog(panel, "Enter Rectangle length");
+						length = JOptionPane.showInputDialog(panel, "Enter Rectangle length");						
 						
 						width = JOptionPane.showInputDialog(panel, "Enter Rectangle width");
 						
@@ -124,7 +145,7 @@ public class Controller2D extends JFrame implements ActionListener {
 						
 						Rectangle rectangle = new Rectangle(convertedLength, convertedWidth);
 						
-						userInput.setText(String.valueOf(rectangle.getArea()));
+						shapeArea.setText(String.valueOf(rectangle.getArea()));
 						
 						loadImage.setIcon(rectangleImage);
 						System.out.println("Tasked completed successfully");
@@ -133,7 +154,7 @@ public class Controller2D extends JFrame implements ActionListener {
 						
 						loadImage.setIcon(blankImage);
 						area.setText("Area of Triangle is");
-						userInput.setText("");
+						shapeArea.setText("");
 						
 						selectedShape = "You selected " + comboBox2D.getItemAt(comboBox2D.getSelectedIndex());
 						selected.setText(selectedShape);
@@ -145,9 +166,9 @@ public class Controller2D extends JFrame implements ActionListener {
 						convertedBase = Double.parseDouble(base);
 						convertedHeight = Double.parseDouble(height);
 						
-						Triangle triangle = new Triangle(convertedBase, convertedHeight);
+						Triangle triangle = new Triangle(convertedBase, convertedHeight);							
 						
-						userInput.setText(String.valueOf(triangle.getArea()));
+						shapeArea.setText(String.valueOf(triangle.getArea()));
 						
 						loadImage.setIcon(triangleImage);
 						System.out.println("Tasked completed successfully");
@@ -157,7 +178,7 @@ public class Controller2D extends JFrame implements ActionListener {
 						
 						loadImage.setIcon(blankImage);
 						area.setText("Area of Square is");
-						userInput.setText("");
+						shapeArea.setText("");
 						
 						selectedShape = "You selected " + comboBox2D.getItemAt(comboBox2D.getSelectedIndex());
 						selected.setText(selectedShape);
@@ -168,7 +189,7 @@ public class Controller2D extends JFrame implements ActionListener {
 						
 						Square square = new Square(convertedSide);
 						
-						userInput.setText(String.valueOf(square.getArea()));
+						shapeArea.setText(String.valueOf(square.getArea()));
 						
 						loadImage.setIcon(squareImage);
 						System.out.println("Tasked completed successfully");
@@ -176,12 +197,12 @@ public class Controller2D extends JFrame implements ActionListener {
 					else {
 						loadImage.setIcon(blankImage);
 						area.setText("");
-						userInput.setText("");
+						shapeArea.setText("");
 						
 						selectedShape = "Sorry wrong answer " + comboBox2D.getItemAt(comboBox2D.getSelectedIndex());
 						selected.setText(selectedShape);
 						
-						System.out.println("Sorry an error has occured");
+						System.err.println("Sorry an error has occured");
 					}
 					
 				} catch (Exception ex) {
@@ -194,10 +215,15 @@ public class Controller2D extends JFrame implements ActionListener {
 			
 		});
 		
-		panel.setLayout(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(600, 600);;
-		frame.setVisible(true);																													/* Making the frame visible. */
+		panel.setLayout(null);																							/* Setting layout for frame. */
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);															/* Set frame to close when the user click "x". */
+		frame.setSize(600, 600);																						/* Set size for frame. */
+		frame.setVisible(true);																							/* Making the frame visible. */
+		
+		/*
+		 * Added Metal look and Feel
+		 * appearance to the app.
+		 */
 		
 		try {
 			UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
@@ -208,10 +234,10 @@ public class Controller2D extends JFrame implements ActionListener {
 		SwingUtilities.updateComponentTreeUI(frame);
 	}
 
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.exit(0);	
+		System.out.println("Exited the App");
+		System.exit(0);																									/* System will terminate when the button exit is clicked. */
 	}
 
 }
